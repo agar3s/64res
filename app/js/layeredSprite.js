@@ -4,7 +4,8 @@ var LayeredSprite = function(sprites){
   m.sprites = [];
   for (var i = 0; i < sprites.length; i++) {
     var sprite = new Sprite(sprites[i].key);
-    sprite.color = sprites[i].color;
+    sprite.color = sprites[i].layer;
+    console.log(sprite.color, colors[this.color])
     sprite.layer = sprites[i].layer;
     m.sprites.push(sprite);
   };

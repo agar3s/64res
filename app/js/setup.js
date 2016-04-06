@@ -4,10 +4,43 @@ var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
 var pixelSize = 1;
-var colorA = '#0E3A19';
-var colorB = '#32623D';
-var colorC = '#6D9F6B';
-var colorD = '#96BA39';
+
+var colors = {
+  M: '#0E3A19',
+  N: '#32623D',
+  O: '#6D9F6B',
+  P: '#96BA39'
+};
+
+var schemas = {
+  gboy: {
+    m:'#0E3A19',
+    n:'#32623D',
+    o:'#6D9F6B',
+    p:'#96BA39'
+  },
+  gboy2: {
+    m:'#0E1D24',
+    n:'#2B6752',
+    o:'#81BF76',
+    p:'#DDF8D1'
+  },
+  gboy3: {
+    m:'#000000',
+    n:'#525252',
+    o:'#929292',
+    p:'#FFFFFF'
+  },
+};
+
+function changeColorSchema(schema){
+  console.log(schema);
+  colors.M = schema.m;
+  colors.N = schema.n;
+  colors.O = schema.o;
+  colors.P = schema.p;
+};
+
 
 //requestAnimationFrame
 var lastTime = 0;

@@ -1,10 +1,10 @@
 var hero = new LayeredSprite([
-  { key:heroM, color:colorA, layer:'M'},
-  { key:heroN, color:colorB, layer:'N'},
-  { key:heroO, color:colorC, layer:'O'}
+  { key:cocoM, layer:'M'},
+  { key:cocoN, layer:'N'},
+  { key:cocoO, layer:'O'}
 ]);
 
-hero.setAnimation('hero');
+hero.setAnimation('coco');
 hero.setPixelSize(pixelSize);
 hero.setPos(0,0);
 
@@ -31,36 +31,39 @@ var triggers = {
 
 var cont=0;
 function gameloop(){
-  // read 
+  // read
+
   // update
-  // draw
+  var x = 0, y=0;
   if(isKeyPressed('37')){
-    hero.move(-1*pixelSize, 0);
+    x = -1;
     hero.setDirection(1);
-  }
-  if(isKeyPressed('38')){
-    hero.move(0, -1*pixelSize);
-  }
-  if(isKeyPressed('39')){
-    hero.move(1*pixelSize, 0);
+  }else if(isKeyPressed('39')){
+    x = 1;
     hero.setDirection(0);
   }
-  if(isKeyPressed('40')){
-    hero.move(0, 1*pixelSize);
-  }
 
-  ctx.fillStyle = colorD;
+  if(isKeyPressed('38')){
+    y = -1;
+  }else if(isKeyPressed('40')){
+    y = 1;
+  }
+  //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);
+  hero.move(x*pixelSize, y*pixelSize);
+
+  // draw
+  ctx.fillStyle = colors.d;
   ctx.fillRect(0, 0, pixelSize*64, pixelSize*64);
 
   cont++;
-  if(cont%3==0){
     hero.animate();
+  if(cont%3==0){
   }
   /*
   var trigger = triggers[cont];
   if(trigger) trigger();
-  if(cont>100) cont=0;
   */
+  if(cont>100) cont=0;
   hero.draw();
 
   ra(gameloop);

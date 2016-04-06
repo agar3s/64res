@@ -74,7 +74,7 @@ var Sprite = function(code){
   }
 
   m.draw= function(){
-    ctx.fillStyle = m.color;
+    ctx.fillStyle = colors[this.color];
     for(var i = 0; i < m.data.length; i++) {
       var k = (m.data[i] & 0XF);
       ctx.fillRect(m.x+(m.direction?k:15-k)*m.pixelSize, m.y+(m.data[i] >> 4)*m.pixelSize, m.pixelSize, m.pixelSize);
