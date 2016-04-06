@@ -5,7 +5,7 @@ var hero = new LayeredSprite([
 ]);
 
 hero.setAnimation('hero');
-hero.setPixelSize(4);
+hero.setPixelSize(pixelSize);
 hero.setPos(0,0);
 /*
 var triggers = {
@@ -28,24 +28,26 @@ var triggers = {
 }
 */
 var cont=0;
+ctx.fillStyle='#000';
+ctx.fillRect(0,0,pixelSize*66,pixelSize*66);
 function gameloop(){
   if(isKeyPressed('37')){
-    hero.move(-1*4, 0);
+    hero.move(-1*pixelSize, 0);
     hero.setDirection(1);
   }
   if(isKeyPressed('38')){
-    hero.move(0, -1*4);
+    hero.move(0, -1*pixelSize);
   }
   if(isKeyPressed('39')){
-    hero.move(1*4, 0);
+    hero.move(1*pixelSize, 0);
     hero.setDirection(0);
   }
   if(isKeyPressed('40')){
-    hero.move(0, 1*4);
+    hero.move(0, 1*pixelSize);
   }
 
   ctx.fillStyle = 'rgba(255,'+Math.floor(Math.random()*122+122)+','+Math.floor(Math.random()*122+122)+',0.4)';
-  ctx.fillRect(0, 0, 256, 256);
+  ctx.fillRect(pixelSize, pixelSize, pixelSize*64, pixelSize*64);
 
   cont++;
   if(cont%3==0){

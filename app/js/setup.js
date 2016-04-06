@@ -3,6 +3,8 @@ doc.get = doc.getElementById;
 var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
+var pixelSize = 4;
+
 //requestAnimationFrame
 var lastTime = 0;
 var vendors = ['ms', 'moz', 'webkit', 'o'];
