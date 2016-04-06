@@ -21,8 +21,14 @@ var LayeredSprite = function(sprites){
   };
   m.setPos = function(x, y){
     m.sprites.map(function(sprite){sprite.x=x; sprite.y=y;});
+  };
+  m.move = function(disx, disy){
+    m.sprites.map(function(sprite){sprite.x+=disx; sprite.y+=disy;});
   }
   m.setAnimation = function(name){
     m.sprites.map(function(sprite){sprite.setAnimation(name+sprite.layer)});
+  }
+  m.setDirection = function(direction){
+    m.sprites.map(function(sprite){sprite.direction=direction});
   }
 }

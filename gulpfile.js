@@ -28,8 +28,8 @@ gulp.task('concat-scripts', ['copy'], function() {
   gulp.src(
     ['./app/js/intro.js',
      './app/js/setup.js',
-     './app/js/events/keys.js',   // optional-remove it for click/touch games
-     './app/js/events/click.js', // optional-remove it for key games
+     './app/js/events/keyEvents.js',   // optional-remove it for click/touch games
+     './app/js/events/clickEvents.js', // optional-remove it for key games
      './app/js/generatedSprites.js',
      './app/js/sprite.js',
      './app/js/layeredSprite.js',

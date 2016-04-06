@@ -1,19 +1,12 @@
-var mixed = new LayeredSprite([
-  { key:catM, color:'#272727', layer:'M'},
-  { key:catO, color:'#f9b0cc', layer:'O'},
-  { key:catP, color:'#3c3c3c', layer:'P'},
-  { key:catQ, color:'#E12B26', layer:'Q'},
-  { key:catS, color:'#151515', layer:'S'},
+var hero = new LayeredSprite([
+  { key:heroM, color:'#330500', layer:'M'},
+  { key:heroN, color:'#606060', layer:'N'},
+  { key:heroO, color:'#383838', layer:'O'}
 ]);
-mixed.setAnimation('cat');
-mixed.setPixelSize(2);
 
-var skull = new LayeredSprite([
-  { key:monsterM, color:'#000', layer:'M'},
-]);
-skull.setAnimation('monster');
-skull.setPixelSize(2);
-skull.setPos(32,32);
+hero.setAnimation('hero');
+hero.setPixelSize(4);
+hero.setPos(0,0);
 /*
 var triggers = {
   '0': function(){
@@ -36,18 +29,32 @@ var triggers = {
 */
 var cont=0;
 function gameloop(){
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0,0,580,580);
+  if(isKeyPressed('37')){
+    hero.move(-1*4, 0);
+    hero.setDirection(1);
+  }
+  if(isKeyPressed('38')){
+    hero.move(0, -1*4);
+  }
+  if(isKeyPressed('39')){
+    hero.move(1*4, 0);
+    hero.setDirection(0);
+  }
+  if(isKeyPressed('40')){
+    hero.move(0, 1*4);
+  }
+
+  ctx.fillStyle = 'rgba(255,'+Math.floor(Math.random()*122+122)+','+Math.floor(Math.random()*122+122)+',0.4)';
+  ctx.fillRect(0, 0, 256, 256);
+
   cont++;
   if(cont%3==0){
-    mixed.animate();
-    skull.animate();
+    hero.animate();
   }/*
   var trigger = triggers[cont];
   if(trigger) trigger();
   if(cont>100) cont=0;*/
-  mixed.draw();
-  skull.draw();
+  hero.draw();
 
   ra(gameloop);
 }

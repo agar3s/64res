@@ -26,3 +26,7 @@ doc.addEventListener('keyup', function(e){
     e.preventDefault();
   }
 });
+
+function isKeyPressed(key){
+  return keyMap&keys[key];
+}
