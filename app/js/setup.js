@@ -3,7 +3,11 @@ doc.get = doc.getElementById;
 var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
-var pixelSize = 4;
+var pixelSize = 1;
+var colorA = '#0E3A19';
+var colorB = '#32623D';
+var colorC = '#6D9F6B';
+var colorD = '#96BA39';
 
 //requestAnimationFrame
 var lastTime = 0;
