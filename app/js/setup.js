@@ -3,7 +3,7 @@ doc.get = doc.getElementById;
 var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
-var pixelSize = 4;
+var pixelSize = 8;
 
 var colors = {
   M: '#0E3A19',
@@ -33,12 +33,12 @@ var schemas = {
   },
 };
 
-function changeColorSchema(schema){
+function changeColorSchema(schema, inverse){
   console.log(schema);
-  colors.M = schema.m;
-  colors.N = schema.n;
-  colors.O = schema.o;
-  colors.P = schema.p;
+  colors.M = inverse?schema.p:schema.m;
+  colors.N = inverse?schema.o:schema.n;
+  colors.O = inverse?schema.n:schema.o;
+  colors.P = inverse?schema.m:schema.p;
 };
 
 

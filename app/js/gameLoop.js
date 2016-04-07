@@ -6,9 +6,9 @@ var hero = new LayeredSprite([
 
 hero.setAnimation('coco');
 hero.setPixelSize(pixelSize);
-hero.setPos(0,0);
+hero.setPos(4*pixelSize,4*pixelSize);
 
-var map = new Map('assets/asdsad.png');
+var map = new Map('assets/mapTest.png');
 
 var triggers = {
   '0': function(){
@@ -29,6 +29,16 @@ var triggers = {
   },
 }
 
+
+
+var names = ['gboy','gboy2','gboy3'];
+var schemaCont = 0;
+canvas.addEventListener('click', function(e){
+  schemaCont+=1;
+  if(schemaCont==3) schemaCont=0;
+  changeColorSchema(schemas[names[schemaCont]], Math.random()>0.5);
+  e.preventDefault();
+});
 
 var cont=0;
 var coords = {
