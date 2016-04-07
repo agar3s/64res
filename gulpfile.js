@@ -19,6 +19,9 @@ gulp.task('clean', function(){
 });
 
 gulp.task('copy', ['clean'], function(){
+  gulp.src('./app/assets/*')
+  .pipe(gulp.dest('dist/assets'));
+
   gulp.src('./index.html')
   .pipe(gulp.dest('dist/'));
 });
@@ -29,10 +32,10 @@ gulp.task('concat-scripts', ['copy'], function() {
     ['./app/js/intro.js',
      './app/js/setup.js',
      './app/js/events/keyEvents.js',   // optional-remove it for click/touch games
-     './app/js/events/clickEvents.js', // optional-remove it for key games
      './app/js/generatedSprites.js',
      './app/js/sprite.js',
      './app/js/layeredSprite.js',
+     './app/js/map.js',
      './app/js/gameLoop.js',
      './app/js/outro.js'
   ])

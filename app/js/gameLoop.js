@@ -8,6 +8,7 @@ hero.setAnimation('coco');
 hero.setPixelSize(pixelSize);
 hero.setPos(0,0);
 
+var map = new Map('assets/asdsad.png');
 
 var triggers = {
   '0': function(){
@@ -30,6 +31,10 @@ var triggers = {
 
 
 var cont=0;
+var coords = {
+  x:0,
+  y:0
+}
 function gameloop(){
   // read
 
@@ -49,14 +54,23 @@ function gameloop(){
     y = 1;
   }
   //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);
-  hero.move(x*pixelSize, y*pixelSize);
-
+  //hero.move(x*pixelSize, y*pixelSize);
+  //hero.move(x*pixelSize, y*pixelSize);
+  coords.x+=x;
+  coords.y+=y;
+  if(coords.x<0){
+    coords.x = 0;
+  }
+  if(coords.y<0){
+    coords.y = 0;
+  }
   // draw
   ctx.fillStyle = colors.d;
   ctx.fillRect(0, 0, pixelSize*64, pixelSize*64);
+  map.draw(coords.x, coords.y, 64, 64);
 
   cont++;
-    hero.animate();
+  hero.animate();
   if(cont%3==0){
   }
   /*

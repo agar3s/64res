@@ -3,7 +3,7 @@ doc.get = doc.getElementById;
 var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
-var pixelSize = 1;
+var pixelSize = 4;
 
 var colors = {
   M: '#0E3A19',
