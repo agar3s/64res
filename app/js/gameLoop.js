@@ -90,7 +90,7 @@ function gameloop(){
   // draw
   ctx.fillStyle = colors.d;
   ctx.fillRect(0, 0, pixelSize*64, pixelSize*64);
-  // map.draw(coords.x, coords.y, 64, 64);
+  map.draw(coords.x, coords.y, 64, 64);
 
   cont++;
   hero.animate();
