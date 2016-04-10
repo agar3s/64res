@@ -1,11 +1,11 @@
 var hero = new LayeredSprite([
-  { key:idle1M, layer:'M'},
-  { key:idle1N, layer:'N'},
-  { key:idle1O, layer:'O'},
-  { key:idle1P, layer:'P'}
+  { key:idle0M, layer:'M'},
+  { key:idle0N, layer:'N'},
+  { key:idle0O, layer:'O'},
+  { key:idle0P, layer:'P'}
 ]);
 
-hero.setAnimation('idle1');
+hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
 hero.setPos(4*pixelSize,4*pixelSize);
 
@@ -64,6 +64,18 @@ function gameloop(){
   }else if(isKeyPressed('40')){
     y = 1;
   }
+
+  // test animations
+  if (isKeyPressed('65')) {
+    hero.setAnimation('idle0');
+  }
+  else if (isKeyPressed('83')) {
+    hero.setAnimation('idle1');
+  }
+  else if (isKeyPressed('68')) {
+    hero.setAnimation('idle2');
+  }
+
   //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);
   //hero.move(x*pixelSize, y*pixelSize);
   //hero.move(x*pixelSize, y*pixelSize);
