@@ -1,10 +1,11 @@
 var hero = new LayeredSprite([
-  { key:cocoM, layer:'M'},
-  { key:cocoN, layer:'N'},
-  { key:cocoO, layer:'O'}
+  { key:idle1M, layer:'M'},
+  { key:idle1N, layer:'N'},
+  { key:idle1O, layer:'O'},
+  { key:idle1P, layer:'P'}
 ]);
 
-hero.setAnimation('coco');
+hero.setAnimation('idle1');
 hero.setPixelSize(pixelSize);
 hero.setPos(4*pixelSize,4*pixelSize);
 
@@ -77,7 +78,7 @@ function gameloop(){
   // draw
   ctx.fillStyle = colors.d;
   ctx.fillRect(0, 0, pixelSize*64, pixelSize*64);
-  map.draw(coords.x, coords.y, 64, 64);
+  // map.draw(coords.x, coords.y, 64, 64);
 
   cont++;
   hero.animate();
