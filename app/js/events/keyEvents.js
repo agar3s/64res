@@ -14,8 +14,11 @@ var keys = {
   '50':1024,      //idle1
   '51':2048,      //idle2
   '52':4096,      //run
-  '53':8192,      //jump
-  '54':16384      //attack
+  '53':8192,      //jump1
+  '54':16384,      //jump2
+  '55':32768,      //jump3
+  '56':65536,      //jump4
+  '57':131072      //attack
 }
 
 doc.addEventListener('keydown', function(e){

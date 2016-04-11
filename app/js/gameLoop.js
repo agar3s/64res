@@ -78,8 +78,14 @@ function gameloop(){
   }else if(isKeyPressed('52')){
     hero.setAnimation('run');
   }else if(isKeyPressed('53')){
-    hero.setAnimation('jump');
+    hero.setAnimation('jump1');
   }else if(isKeyPressed('54')){
+    hero.setAnimation('jump2');
+  }else if(isKeyPressed('55')){
+    hero.setAnimation('jump3');
+  }else if(isKeyPressed('56')){
+    hero.setAnimation('jump4');
+  }else if(isKeyPressed('57')){
     hero.setAnimation('attack');
   }
 
