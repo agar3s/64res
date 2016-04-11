@@ -7,9 +7,9 @@ var hero = new LayeredSprite([
 
 hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
-hero.setPos(4*pixelSize,4*pixelSize);
+hero.setPos(0,0);
 
-var map = new Map('assets/level01.png');
+var map = new Map('assets/level01-2.png');
 //var map = new Map('assets/mapTest.png');
 
 var triggers = {
@@ -33,11 +33,11 @@ var triggers = {
 
 
 
-var names = ['gboy','gboy2','gboy3'];
+var names = ['exp2','gboy2','gboy3', 'exp1','gboy'];
 var schemaCont = 0;
 canvas.addEventListener('click', function(e){
   schemaCont+=1;
-  if(schemaCont==3) schemaCont=0;
+  if(schemaCont==4) schemaCont=0;
   changeColorSchema(schemas[names[schemaCont]], Math.random()>0.5);
   e.preventDefault();
 });
@@ -48,22 +48,24 @@ var coords = {
   y:0
 }
 function gameloop(){
+  if(!map.loaded) ra(gameloop);
   // read
 
   // update
   var x = 0, y=0;
+  y = 1;
+  var heroCollides = map.checkCollision(hero, 2);
   if(isKeyPressed('37')){
-    x = -1;
+    x = -hero.speed;
     hero.setDirection(1);
   }else if(isKeyPressed('39')){
-    x = 1;
+    x = hero.speed;
     hero.setDirection(0);
   }
 
   if(isKeyPressed('38')){
-    y = -1;
-  }else if(isKeyPressed('40')){
-    y = 1;
+    hero.collides = false;
+    y = -hero.speed;
   }
 
   // test animations
@@ -78,10 +80,16 @@ function gameloop(){
   }
 
   //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);
-  //hero.move(x*pixelSize, y*pixelSize);
-  //hero.move(x*pixelSize, y*pixelSize);
-  coords.x+=x;
-  coords.y+=y;
+
+  if(heroCollides) y =0;
+  if((hero.x<=-5&&x==-hero.speed)||(hero.x>=map.width-10&&x==hero.speed)){
+    x = 0;
+  }
+  hero.move(x, y);
+
+
+  coords.x=hero.x-24;
+  coords.y=hero.y-24;
   if(coords.x<0){
     coords.x = 0;
   }else if(coords.x>(map.width-screenSize)){
@@ -93,25 +101,26 @@ function gameloop(){
     coords.y = map.height-screenSize;
   }
 
-  if(map.loaded){
-    // draw
-    ctx.fillStyle = colors.d;
-    ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
-    map.draw(coords.x, coords.y, screenSize, screenSize);
 
-    cont++;
-    hero.animate();
-    if(cont%3==0){
-    
-    }
-    /*
-    var trigger = triggers[cont];
-    if(trigger) trigger();
-    */
-    if(cont>100) cont=0;
-    hero.draw();
-    
+  
+    // draw
+  ctx.fillStyle = colors.d;
+  ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
+  map.draw(Math.floor(coords.x), Math.floor(coords.y), screenSize, screenSize);
+
+  hero.animate();
+  cont++;
+  if(cont%2==0){
+  
   }
+  /*
+  var trigger = triggers[cont];
+  if(trigger) trigger();
+  */
+  if(cont>100) cont=0;
+  hero.draw(coords.x*pixelSize, coords.y*pixelSize);
+  
+  if(heroCollides) hero.move(0, -1);
 
   ra(gameloop);
 }

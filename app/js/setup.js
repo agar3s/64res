@@ -3,7 +3,7 @@ doc.get = doc.getElementById;
 var canvas = doc.get('c');
 var ctx = canvas.getContext('2d');
 
-var pixelSize = 5;
+var pixelSize = 7;
 var screenSize = 64;
 
 var colors = {
@@ -31,6 +31,18 @@ var schemas = {
     n:'#525252',
     o:'#929292',
     p:'#FFFFFF'
+  },
+  exp1: {
+    m:'#A4155D',
+    n:'#525252',
+    o:'#F14D9F',
+    p:'#E2FFE2'
+  },
+  exp2: {
+    m:'#F21E12',
+    n:'#890902',
+    o:'#1C492D',
+    p:'#000000'
   },
 };
 

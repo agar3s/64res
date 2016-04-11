@@ -73,11 +73,11 @@ var Sprite = function(code){
     m.data = data2;
   }
 
-  m.draw= function(){
+  m.draw= function(relativeX, relativeY){
     ctx.fillStyle = colors[this.color];
     for(var i = 0; i < m.data.length; i++) {
       var k = (m.data[i] & 0XF);
-      ctx.fillRect(m.x+(m.direction?k:15-k)*m.pixelSize, m.y+(m.data[i] >> 4)*m.pixelSize, m.pixelSize, m.pixelSize);
+      ctx.fillRect(Math.floor(m.x*pixelSize)+(m.direction?k:15-k)*m.pixelSize - relativeX, Math.floor(m.y*pixelSize)+(m.data[i] >> 4)*m.pixelSize - relativeY, m.pixelSize, m.pixelSize);
     }
   }
 
@@ -101,6 +101,5 @@ var Sprite = function(code){
     m.x = x;
     m.y = y;
   }
-
 
 }
