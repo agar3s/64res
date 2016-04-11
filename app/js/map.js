@@ -5,21 +5,24 @@ var Map = function(source){
   drawing = new Image();
   drawing.src = source; // can also be a remote URL e.g. http://
   this.map = [];
+  this.loaded = false;
   var self = this;
   drawing.onload = function() {
     ctx.drawImage(drawing, 0, 0);
+    self.width = drawing.width;
+    self.height = drawing.height;
     var imgd = ctx.getImageData(0, 0, drawing.width, drawing.height);
     var pix = imgd.data;
 
-    // Loop over each pixel and invert the color.
     var row = -1;
     for (var i = 0, n = pix.length; i < n; i += 4) {
-      if(i%drawing.width==0){
+      if(i%(drawing.width*4)==0){
         self.map.push([]);
         row++;
       }
       self.map[row].push(Math.floor(pix[i]/64)); // red
     }
+    map.loaded = true;
   };
 
   this.draw = function(x, y, width, height){
