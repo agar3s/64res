@@ -1,8 +1,8 @@
 var hero = new LayeredSprite([
-  { key:idle0M, layer:'M'},
-  { key:idle0N, layer:'N'},
-  { key:idle0O, layer:'O'},
-  { key:idle0P, layer:'P'}
+  { key:attackM, layer:'M'},
+  { key:attackN, layer:'N'},
+  { key:attackO, layer:'O'},
+  { key:attackP, layer:'P'}
 ]);
 
 hero.setAnimation('idle0');
@@ -69,12 +69,18 @@ function gameloop(){
   }
 
   // test animations
-  if(isKeyPressed('65')){
-    hero.setAnimation('run');
-  }else if(isKeyPressed('83')){
-    hero.setAnimation('jump');
-  }else if(isKeyPressed('68')){
+  if(isKeyPressed('49')){
+    hero.setAnimation('idle0');
+  }else if(isKeyPressed('50')){
+    hero.setAnimation('idle1');
+  }else if(isKeyPressed('51')){
     hero.setAnimation('idle2');
+  }else if(isKeyPressed('52')){
+    hero.setAnimation('run');
+  }else if(isKeyPressed('53')){
+    hero.setAnimation('jump');
+  }else if(isKeyPressed('54')){
+    hero.setAnimation('attack');
   }
 
   //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);

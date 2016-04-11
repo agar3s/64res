@@ -8,7 +8,14 @@ var keys = {
   '83':32,        // s attack
   '68':64,        // a previous
   '32':128,       // space jump
-  '13':256        // enter key 
+  '13':256,        // enter key 
+  // tests
+  '49':512,       //idle0
+  '50':1024,      //idle1
+  '51':2048,      //idle2
+  '52':4096,      //run
+  '53':8192,      //jump
+  '54':16384      //attack
 }
 
 doc.addEventListener('keydown', function(e){
