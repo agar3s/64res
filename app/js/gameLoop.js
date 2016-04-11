@@ -70,13 +70,10 @@ function gameloop(){
 
   // test animations
   if(isKeyPressed('65')){
-    console.log("A");
     hero.setAnimation('run');
   }else if(isKeyPressed('83')){
-    console.log("S");
-    hero.setAnimation('idle1');
+    hero.setAnimation('jump');
   }else if(isKeyPressed('68')){
-    console.log("D");
     hero.setAnimation('idle2');
   }
 
