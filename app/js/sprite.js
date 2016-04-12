@@ -47,12 +47,12 @@ var Sprite = function(code){
   m.setPixelSize = function(pixelSize){
     m.pixelSize = pixelSize;
     m.height = m.width = m.pixelSize*16;
-  }
+  };
   
   m.addFrame = function(data){
     m.frames.push(convertTobyte(data));
     m.iFrame = m.frames.length-1;
-  }
+  };
 
   m.animate = function(){
     if(++m.iFrame>=m.frames.length){
@@ -71,7 +71,7 @@ var Sprite = function(code){
       }
     }
     m.data = data2;
-  }
+  };
 
   m.draw= function(relativeX, relativeY){
     ctx.fillStyle = colors[this.color];
@@ -79,7 +79,7 @@ var Sprite = function(code){
       var k = (m.data[i] & 0XF);
       ctx.fillRect(Math.floor(m.x*pixelSize)+(m.direction?k:15-k)*m.pixelSize - relativeX, Math.floor(m.y*pixelSize)+(m.data[i] >> 4)*m.pixelSize - relativeY, m.pixelSize, m.pixelSize);
     }
-  }
+  };
 
   m.setAnimation = function(name){
     if(m.currentAnimation == name||!animations[name]) return;
@@ -95,11 +95,11 @@ var Sprite = function(code){
       }
       m.addFrame(loadByString(ha));
     }
-  }
+  };
 
   m.setPosition = function(x, y){
     m.x = x;
     m.y = y;
-  }
+  };
 
 }

@@ -92,7 +92,7 @@ function gameloop(){
   //var y = isKeyPressed('38')?-1:(isKeyPressed('40')?:1:0);
 
   if(heroCollides) y =0;
-  if((hero.x<=-5&&x==-hero.speed)||(hero.x>=map.width-10&&x==hero.speed)){
+  if((hero.x<=-5&&x==-hero.speed)||(hero.x>=map.width-11&&x==hero.speed)){
     x = 0;
   }
   hero.move(x, y);

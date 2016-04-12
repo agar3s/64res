@@ -49,11 +49,14 @@ var Map = function(source){
     var lines = sprite.getLastLines(n);
     var x = sprite.x;
     var y = sprite.y+1;
-    var limitY = y+15>this.map.height?this.map.height-15:y+15;
+    console.log(y+15, m.height)
+    var limitY = (y+15)>(m.height-1)?(m.height-1):(y+15);
+    limitY = limitY<n?n:limitY;
+
     for (var j = 0; j < lines.length; j++) {
       var res = 0;
       for (var i = 0; i < 15; i++) {
-        var b = this.map[y+15-j][x+i];
+        var b = m.map[limitY-j][x+i];
         res+=(b==0?(1<<(15-i)):0);
       }
       
