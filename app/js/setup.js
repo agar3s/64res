@@ -6,53 +6,55 @@ var ctx = canvas.getContext('2d');
 var pixelSize = 7;
 var screenSize = 64;
 
-var colors = {
-  M: '#0E3A19',
-  N: '#32623D',
-  O: '#6D9F6B',
-  P: '#96BA39'
-};
 
 var schemas = {
   gboy: {
-    m:'#0E3A19',
-    n:'#32623D',
-    o:'#6D9F6B',
-    p:'#96BA39'
+    M:'#0E3A19',
+    N:'#32623D',
+    O:'#6D9F6B',
+    P:'#96BA39'
   },
   gboy2: {
-    m:'#0E1D24',
-    n:'#2B6752',
-    o:'#81BF76',
-    p:'#DDF8D1'
+    M:'#0E1D24',
+    N:'#2B6752',
+    O:'#81BF76',
+    P:'#DDF8D1'
   },
   gboy3: {
-    m:'#000000',
-    n:'#525252',
-    o:'#929292',
-    p:'#FFFFFF'
+    M:'#000000',
+    N:'#525252',
+    O:'#929292',
+    P:'#FFFFFF'
   },
   exp1: {
-    m:'#A4155D',
-    n:'#525252',
-    o:'#F14D9F',
-    p:'#E2FFE2'
+    M:'#A4155D',
+    N:'#525252',
+    O:'#F14D9F',
+    P:'#E2FFE2'
   },
   exp2: {
-    m:'#F21E12',
-    n:'#890902',
-    o:'#1C492D',
-    p:'#000000'
+    M:'#F21E12',
+    N:'#890902',
+    O:'#1C492D',
+    P:'#000000'
   },
 };
 
+var colors = schemas[Object.keys(schemas)[Math.floor(Math.random()*5)]];
+
 function changeColorSchema(schema, inverse){
-  console.log(schema);
-  colors.M = inverse?schema.p:schema.m;
-  colors.N = inverse?schema.o:schema.n;
-  colors.O = inverse?schema.n:schema.o;
-  colors.P = inverse?schema.m:schema.p;
+  colors.M = inverse?schema.P:schema.M;
+  colors.N = inverse?schema.O:schema.N;
+  colors.O = inverse?schema.N:schema.O;
+  colors.P = inverse?schema.M:schema.P;
 };
+
+// PARAMS 
+//gravity config
+var GRAVITY_FORCE = 1;
+var Y_ACELERATION = -1;
+var MAX_JUMP_POWER = 15;
+var ROWS_TO_CHECK_FLOOR_COLLISION = 2;
 
 
 //requestAnimationFrame

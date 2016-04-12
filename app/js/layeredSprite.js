@@ -5,42 +5,66 @@ var LayeredSprite = function(sprites){
   for (var i = 0; i < sprites.length; i++) {
     var sprite = new Sprite(sprites[i].key);
     sprite.color = sprites[i].layer;
-    console.log(sprite.color, colors[this.color])
     sprite.layer = sprites[i].layer;
     m.sprites.push(sprite);
   };
   m.pixelSize = 0;
   m.speed = 1;
+  m.speedY = 0;
+  m.acelerationY = 0;
   m.x = 0;
   m.y = 0;
-  
+  m.jumpPower = 0;
+  m.onEndAnimationLoop = undefined;
+  m.currentAnimation = '';
+
   m.setPixelSize = function(pixelSize){
     m.pixelSize = pixelSize;
     m.sprites.map(function(sprite){sprite.setPixelSize(pixelSize)});
   };
 
   m.animate = function(){
-    m.sprites.map(function(sprite){sprite.animate()});
+    for (var i = 0; i < m.sprites.length; i++) {
+      var sprite = m.sprites[i];
+      sprite.animate();
+    }
+
+    if(sprite.iFrame>=sprite.frames.length-1&&m.onEndAnimationLoop){
+      m.onEndAnimationLoop();
+    }
   };
 
   m.draw = function(x, y){
-    m.sprites.map(function(sprite){sprite.draw(x, y)});
+    for (var i = 0; i < m.sprites.length; i++) {
+      m.sprites[i].draw(x, y);
+    };
   };
 
   m.setPos = function(x, y){
     m.x = x;
     m.y = y;
-    m.sprites.map(function(sprite){sprite.x=x; sprite.y=y;});
+    for (var i = 0; i < m.sprites.length; i++) {
+      m.sprites[i].x = x;
+      m.sprites[i].y = y;
+    }
   };
 
-  m.move = function(disx, disy){
+  m.move = function(disx){
+    m.acelerationY += (0.1);
+    if(m.acelerationY>2) m.acelerationY = 2;
+    m.speedY = m.acelerationY;
     m.x+=disx;
-    m.y+=disy;
-    m.sprites.map(function(sprite){sprite.x+=disx; sprite.y+=disy;});
+    m.y = Math.round(m.y+m.speedY)
+    m.setPos(m.x, m.y);
+    
   };
 
   m.setAnimation = function(name){
-    m.sprites.map(function(sprite){sprite.setAnimation(name+sprite.layer)});
+    m.currentAnimation = name;
+    for (var i = 0; i < m.sprites.length; i++) {
+      var sprite =  m.sprites[i];
+      sprite.setAnimation(name+sprite.layer);
+    }
   };
 
   m.setDirection = function(direction){

@@ -29,16 +29,16 @@ var Map = function(source){
 
   m.draw = function(x, y, width, height){
     if(!this.map||!this.map[0]) return;
-    x = x+width>=this.map[0].length?this.map[0].length-1-width:x;
-    y = y+height>=this.map.length?this.map.length-1-height:y;
+    x = x+width>=m.width?m.width-width:x;
+    y = y+height>=m.height?m.height-height:y;
 
     //ctx.fillStyle = '#000';
-    for (var i = 0; i < height; i++) {
-      for (var j = 0; j < width; j++) {
-        var color = this.map[i+y][j+x];
+    for (var j = 0; j < height; j++) {
+      for (var i = 0; i < width; i++) {
+        var color = this.map[j+y][i+x];
         if(color!=3){
           ctx.fillStyle = colors['MNO'[color]];
-          ctx.fillRect(j*pixelSize, i*pixelSize, pixelSize, pixelSize);
+          ctx.fillRect(i*pixelSize, j*pixelSize, pixelSize, pixelSize);
         }
       };
     };
@@ -49,11 +49,11 @@ var Map = function(source){
     var lines = sprite.getLastLines(n);
     var x = sprite.x;
     var y = sprite.y+1;
-    console.log(y+15, m.height)
+    
     var limitY = (y+15)>(m.height-1)?(m.height-1):(y+15);
     limitY = limitY<n?n:limitY;
 
-    for (var j = 0; j < lines.length; j++) {
+    for (var j = lines.length-1; j >= 0; j--) {
       var res = 0;
       for (var i = 0; i < 15; i++) {
         var b = m.map[limitY-j][x+i];
@@ -61,10 +61,10 @@ var Map = function(source){
       }
       
       if((res&lines[j])>0){
-        return true;
+        return limitY-j;
       }
     }
-    return false;
+    return -1;
   }
 
 

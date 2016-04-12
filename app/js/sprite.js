@@ -73,6 +73,7 @@ var Sprite = function(code){
     m.data = data2;
   };
 
+
   m.draw= function(relativeX, relativeY){
     ctx.fillStyle = colors[this.color];
     for(var i = 0; i < m.data.length; i++) {
