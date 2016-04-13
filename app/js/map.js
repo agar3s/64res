@@ -1,12 +1,10 @@
-var oReq = new XMLHttpRequest();
-
 
 var Map = function(source){
+  var m = this;
+  m.loaded = false;
   var drawing = new Image();
   drawing.src = source; // can also be a remote URL e.g. http://
-  this.map = [];
-  this.loaded = false;
-  var m = this;
+  m.map = [];
 
   drawing.onload = function(){
     ctx.drawImage(drawing, 0, 0);
@@ -23,7 +21,7 @@ var Map = function(source){
       }
       m.map[row].push(Math.floor(pix[i]/64)); // red
     }
-    map.loaded = true;
+    m.loaded = true;
   }
 
 
