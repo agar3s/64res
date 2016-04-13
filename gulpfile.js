@@ -37,6 +37,8 @@ gulp.task('concat-scripts', ['copy'], function() {
      './app/js/layeredSprite.js',
      './app/js/map.js',
      './app/js/mapScene.js',
+     './app/js/puzzle.js',
+     './app/js/puzzleScene.js',
      './app/js/gameLoop.js',
      './app/js/outro.js'
   ])
