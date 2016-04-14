@@ -31,7 +31,7 @@ function changeScene(newScene){
 
 function gameloop(){
   if(!scene.isReady()){
-    console.log('no ready', scene.map);
+    //console.log('no ready', scene.map);
     return ra(gameloop);
   }
   // read

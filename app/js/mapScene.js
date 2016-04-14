@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/'+'123456789ABCDEF'[Math.floor(Math.random()*15)]+'0.png');
+  m.map = new Map('assets/0.png');
 
   m.cont=0;
   m.coords = {
@@ -62,17 +62,17 @@ var MapScene = function(){
     };
 
     if(hero.x<=-15){
-      return m.changeMap('left');
+      return m.changeMap('l');
     }
     if(hero.x>=m.map.width-1){
-      return m.changeMap('right');
+      return m.changeMap('r');
     }
 
     if(hero.y<=-15){
-      return m.changeMap('top');
+      return m.changeMap('u');
     }
     if(hero.y>=m.map.height-1){
-      return m.changeMap('bottom');
+      return m.changeMap('d');
     }
 
     if(values.x==0&&hero.jumpPower==0&&hero.currentAnimation!='jump4'&&hero.currentAnimation!='jump3'){
@@ -140,10 +140,14 @@ var MapScene = function(){
     m.map.draw(Math.floor(m.coords.x), Math.floor(m.coords.y), screenSize, screenSize);
   };
 
-  m.changeMap = function(mapName){
-    console.log(mapName);
-    m.map = new Map('assets/'+'123456789ABCDEF'[Math.floor(Math.random()*15)]+'0.png');
-    hero.setPos(32,32);
+  m.changeMap = function(direction){
+    var newMap = getNextRoom(direction);
+    
+    m.map = new Map('assets/'+newMap.name+'.png');
+    var pos = m.map.enterPos(direction);
+    //hero.setPos(pos.i, pos.j);
+    hero.setPos(32, 32);
+
   };
 
   m.isReady = function(){

@@ -80,5 +80,15 @@ var Map = function(source){
     return -1;
   }
 
+  m.enterPos = function(direction){
+    return {
+      'r': {i:0, j:m.height/2},
+      'l': {i:m.width, j:m.height/2},
+      'u': {i:m.height/2, j:m.height-15},
+      'd': {i:m.height/2, j:0},
+    }[direction];
+
+  }
+
 
 }
