@@ -23,7 +23,7 @@ var codes = {
   },
 }
 
-var Puzzle = function(code){
+var Puzzle = function(code, id){
   var m = this;
   m.pieces = [];
   m.loaded = false;
@@ -31,6 +31,7 @@ var Puzzle = function(code){
   m.exit = 7;
   m.proportion = 8;
   m.void = {i:0, j:0};
+  m.id = id;
 
 
   m.decode = function(code){
@@ -51,8 +52,21 @@ var Puzzle = function(code){
       }
     }
     m.loaded = true;
-    
   };
+
+  m.encode = function(){
+    var code = '';
+    code += m.enter.toString('16');
+    code += m.exit.toString('16');
+    m.pieces[m.void.j][m.void.i] = 0;
+    for (var j = 0; j < 4; j++) {
+      for (var i = 0; i < 4; i++) {
+        code += m.pieces[j][i].toString('16')
+      }
+    }
+    m.pieces[m.void.j][m.void.i] = -1;
+    return code;
+  }
 
   m.exchange = function(i, j){
     var temp = m.pieces[j][i];
@@ -91,7 +105,9 @@ var Puzzle = function(code){
   m.draw = function(relx, rely){
     relx = relx || 0;
     rely = rely || 0;
-    //console.log(colors.d, colors.m)
+    ctx.fillStyle = colors.P;
+    ctx.fillRect(-relx*pixelSize, -rely*pixelSize, pixelSize*32, pixelSize*32);
+    
 
     for (var j = 0; j < 4; j++) {
       for (var i = 0; i < 4; i++) {

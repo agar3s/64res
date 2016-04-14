@@ -8,22 +8,26 @@ var MapScene = function(){
     x:0,
     y:0
   };
+  m.enter = false;
 
   m.readInputs = function(){
-    var x = 0;
-    var y = 0;
-    var heroCollides = m.map.checkCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION);
+    var values = {
+      x: 0,
+      y: 0,
+      heroCollides: m.map.checkCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION)
+    }
+    
     if(isKeyPressed('37')){
-      x = -hero.speed;
+      values.x = -hero.speed;
       hero.setDirection(1);
       if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
     }else if(isKeyPressed('39')){
-      x = hero.speed;
+      values.x = hero.speed;
       hero.setDirection(0);
       if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
     }
 
-    if(isKeyPressed('38')&&(heroCollides!=-1)){
+    if(isKeyPressed('38')&&(values.heroCollides!=-1)){
       hero.collides = false;
       hero.acelerationY = Y_ACELERATION;
       hero.jumpPower = 0;
@@ -37,15 +41,26 @@ var MapScene = function(){
       hero.lockJump = hero.jumpPower>MAX_JUMP_POWER;
     }
 
-    return {
-      x: x,
-      y: y,
-      heroCollides: heroCollides
-    };
+    if(isKeyPressed('13')){
+      m.enter = true;
+    }else if(m.enter){
+      values.enter = true;
+      m.enter = false;
+    }
+
+    return values;
   };
 
 
   m.update = function(values){
+    if(values.enter && m.map.puzzle){
+      puzzleScene.puzzle = m.map.puzzle;
+      puzzleScene.x = m.coords.x;
+      puzzleScene.y = m.coords.y;
+      hero.setAnimation('idle1');
+      changeScene(puzzleScene);
+    };
+
     if((hero.x<=-5&&values.x==-hero.speed)||(hero.x>=m.map.width-11&&values.x==hero.speed)){
       values.x = 0;
     }
@@ -96,7 +111,6 @@ var MapScene = function(){
     // camera follows
     m.coords.x = hero.x-24;
     m.coords.y = hero.y-24;
-    m.coords.y = hero.y-24;
     if(m.coords.x < 0){
       m.coords.x = 0;
     }else if(m.coords.x > (m.map.width-screenSize)){
@@ -113,7 +127,6 @@ var MapScene = function(){
     ctx.fillStyle = colors.D;
     ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
     m.map.draw(Math.floor(m.coords.x), Math.floor(m.coords.y), screenSize, screenSize);
-    hero.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
   };
 
   m.changeMap = function(mapName){

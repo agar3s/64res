@@ -10,8 +10,9 @@ hero.setPixelSize(pixelSize);
 hero.setPos(0,0);
 var idleAnimation = 'idle0';
 
-var scene = new MapScene();
-//var scene = new PuzzleScene();
+var mapScene = new MapScene();
+var puzzleScene = new PuzzleScene();
+var scene = mapScene;
 
 /** color schemes */
 var names = ['exp2','gboy2','gboy3', 'exp1','gboy'];
@@ -24,7 +25,9 @@ canvas.addEventListener('click', function(e){
 });
 /***/
 
-
+function changeScene(newScene){
+  scene = newScene;
+}
 
 function gameloop(){
   if(!scene.isReady()){
@@ -38,6 +41,7 @@ function gameloop(){
   // draw
   ctx.fillStyle = colors.P;
   scene.draw();
+  hero.draw(mapScene.coords.x*pixelSize, mapScene.coords.y*pixelSize);
   ctx.fillStyle = '#333';
   ctx.fillRect(0, 64*pixelSize, 900, 64*pixelSize);
   ctx.fillRect(64*pixelSize, 0, 900-64*pixelSize, 500);

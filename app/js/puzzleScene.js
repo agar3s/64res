@@ -1,7 +1,7 @@
 
 var PuzzleScene = function(){
   var m = this;
-  m.puzzle = new Puzzle('F7AC2C69053C6D0393');
+  m.puzzle = new Puzzle('F70101010101010101');
   //m.puzzle = new Puzzle('F712483596AC78DEF0');
   hero.setAnimation('idle2');
   m.up = false;
@@ -14,7 +14,8 @@ var PuzzleScene = function(){
       up: false,
       down: false,
       left: false,
-      right: false
+      right: false,
+      enter: false
     }
     if(isKeyPressed('37')){
       m.left = true;
@@ -44,10 +45,22 @@ var PuzzleScene = function(){
       m.down = false;
     }
 
+    if(isKeyPressed('13')){
+      m.enter = true;
+    }else if(m.enter){
+      values.enter = true;
+      m.enter = false;
+    }
+
     return values;
   }
 
   m.update = function(values){
+    if(values.enter){
+      puzzleBible[m.puzzle.id].current = m.puzzle.encode();
+      changeScene(mapScene);
+    };
+
     if(values.right) m.puzzle.toRight();
     if(values.left) m.puzzle.toLeft();
     if(values.up) m.puzzle.toTop();
@@ -56,10 +69,8 @@ var PuzzleScene = function(){
   }
 
   m.draw = function(){
-    ctx.fillStyle = colors.P;
-    ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
-    m.puzzle.draw();
-    hero.draw(-40*pixelSize, -40*pixelSize);
+    m.puzzle.draw(m.x-m.puzzle.x, m.y-m.puzzle.y);
+    //hero.draw(-40*pixelSize, -40*pixelSize);
   }
 
   m.isReady = function(){

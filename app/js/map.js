@@ -31,7 +31,7 @@ var Map = function(source){
   m.processInfo = function(a, b, i, j){
     if(a==1){ // puzzle room
       var code = puzzleBible[b].current;
-      m.puzzle = new Puzzle(code);
+      m.puzzle = new Puzzle(code, b);
       m.puzzle.x = i;
       m.puzzle.y = j;
     }
@@ -42,7 +42,7 @@ var Map = function(source){
     if(!this.map||!this.map[0]) return;
     x = x+width>=m.width?m.width-width:x;
     y = y+height>=m.height?m.height-height:y;
-    //ctx.fillStyle = '#000';
+    
     for (var j = 0; j < height; j++) {
       for (var i = 0; i < width; i++) {
         var color = this.map[j+y][i+x];
