@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/a.png');
+  m.map = new Map('assets/'+'123456789ABCDEF'[Math.floor(Math.random()*15)]+'0.png');
 
   m.cont=0;
   m.coords = {
@@ -57,13 +57,24 @@ var MapScene = function(){
       puzzleScene.puzzle = m.map.puzzle;
       puzzleScene.x = m.coords.x;
       puzzleScene.y = m.coords.y;
-      hero.setAnimation('idle1');
+      hero.setAnimation('idle2');
       changeScene(puzzleScene);
     };
 
-    if((hero.x<=-5&&values.x==-hero.speed)||(hero.x>=m.map.width-11&&values.x==hero.speed)){
-      values.x = 0;
+    if(hero.x<=-15){
+      return m.changeMap('left');
     }
+    if(hero.x>=m.map.width-1){
+      return m.changeMap('right');
+    }
+
+    if(hero.y<=-15){
+      return m.changeMap('top');
+    }
+    if(hero.y>=m.map.height-1){
+      return m.changeMap('bottom');
+    }
+
     if(values.x==0&&hero.jumpPower==0&&hero.currentAnimation!='jump4'&&hero.currentAnimation!='jump3'){
       hero.setAnimation(idleAnimation);
     }
@@ -130,7 +141,9 @@ var MapScene = function(){
   };
 
   m.changeMap = function(mapName){
-    m.map = new Map('assets/level01.png');
+    console.log(mapName);
+    m.map = new Map('assets/'+'123456789ABCDEF'[Math.floor(Math.random()*15)]+'0.png');
+    hero.setPos(32,32);
   };
 
   m.isReady = function(){

@@ -7,7 +7,7 @@ var hero = new LayeredSprite([
 
 hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
-hero.setPos(0,0);
+hero.setPos(32,32);
 var idleAnimation = 'idle0';
 
 var mapScene = new MapScene();
