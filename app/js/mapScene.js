@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/level01.png');
+  m.map = new Map('assets/a.png');
 
   m.cont=0;
   m.coords = {

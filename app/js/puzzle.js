@@ -88,14 +88,16 @@ var Puzzle = function(code){
     m.void.j +=1;
   }
 
-  m.draw = function(){
+  m.draw = function(relx, rely){
+    relx = relx || 0;
+    rely = rely || 0;
     //console.log(colors.d, colors.m)
 
     for (var j = 0; j < 4; j++) {
       for (var i = 0; i < 4; i++) {
         var code = m.pieces[j][i];
-        var x = i*m.proportion*pixelSize+8*pixelSize;
-        var y = j*m.proportion*pixelSize+8*pixelSize;
+        var x = i*m.proportion*pixelSize-relx*pixelSize;
+        var y = j*m.proportion*pixelSize-rely*pixelSize;
         var pp = m.proportion/2;
         ctx.fillStyle = colors.N;
         ctx.fillRect(x, y, m.proportion*pixelSize, pixelSize);

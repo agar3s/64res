@@ -5,6 +5,7 @@ var Map = function(source){
   var drawing = new Image();
   drawing.src = source; // can also be a remote URL e.g. http://
   m.map = [];
+  m.puzzle = undefined;
 
   drawing.onload = function(){
     ctx.drawImage(drawing, 0, 0);
@@ -20,8 +21,20 @@ var Map = function(source){
         row++;
       }
       m.map[row].push(Math.floor(pix[i]/64)); // red
+      var info1 = Math.floor(pix[i+1]/10); // green
+      var info2 = Math.floor(pix[i+2]/10); // blue
+      m.processInfo(info1, info2, m.map[row].length-1, row);
     }
     m.loaded = true;
+  }
+
+  m.processInfo = function(a, b, i, j){
+    if(a==1){ // puzzle room
+      var code = puzzleBible[b].current;
+      m.puzzle = new Puzzle(code);
+      m.puzzle.x = i;
+      m.puzzle.y = j;
+    }
   }
 
 
@@ -29,7 +42,6 @@ var Map = function(source){
     if(!this.map||!this.map[0]) return;
     x = x+width>=m.width?m.width-width:x;
     y = y+height>=m.height?m.height-height:y;
-
     //ctx.fillStyle = '#000';
     for (var j = 0; j < height; j++) {
       for (var i = 0; i < width; i++) {
@@ -40,6 +52,9 @@ var Map = function(source){
         }
       };
     };
+    if(m.puzzle){
+      m.puzzle.draw(x-m.puzzle.x, y-m.puzzle.y);
+    }
   }
 
 
