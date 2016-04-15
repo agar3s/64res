@@ -62,17 +62,17 @@ var MapScene = function(){
       changeScene(puzzleScene);
     };
 
-    if(hero.x<=-10){
+    if(hero.x<=-10 && isNextRoom('l')){
       return m.changeMap('l');
     }
-    if(hero.x>=m.map.width-5){
+    if(hero.x>=m.map.width-5 && isNextRoom('r')){
       return m.changeMap('r');
     }
 
-    if(hero.y<=-15){
+    if(hero.y<=-15 && isNextRoom('u')){
       return m.changeMap('u');
     }
-    if(hero.y>=m.map.height-1){
+    if(hero.y>=m.map.height-1 && isNextRoom('d')){
       return m.changeMap('d');
     }
 

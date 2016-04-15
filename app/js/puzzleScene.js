@@ -58,6 +58,8 @@ var PuzzleScene = function(){
   m.update = function(values){
     if(values.enter){
       puzzleBible[m.puzzle.id].current = m.puzzle.encode();
+      // depending on the zone - temp zone A
+      generateRooms("A", puzzleBible[m.puzzle.id].current);
       starFlashing(11,30);
       changeScene(mapScene);
     };
