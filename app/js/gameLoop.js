@@ -29,6 +29,26 @@ function changeScene(newScene){
   scene = newScene;
 }
 
+var cont = 0;
+var max = 20;
+var miliseconds = 30;
+
+function flashing(){
+  if(cont>=max) return;
+  setTimeout(function(){
+    inverseColors();
+    cont++;
+    flashing();
+  }, miliseconds);
+}
+
+function starFlashing(maximum, interval){
+  cont=0;
+  max = maximum||max;
+  miliseconds = interval||miliseconds;
+  flashing();
+}
+
 function gameloop(){
   if(!scene.isReady()){
     //console.log('no ready', scene.map);

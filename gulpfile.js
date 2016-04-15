@@ -40,6 +40,7 @@ gulp.task('concat-scripts', ['copy'], function() {
      './app/js/puzzle.js',
      './app/js/puzzleScene.js',
      './app/js/puzzleBible.js',
+     './app/js/roomMaster.js',
      './app/js/gameLoop.js',
      './app/js/outro.js'
   ])

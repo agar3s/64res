@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/0.png');
+  m.map = new Map('assets/A.png');
 
   m.cont=0;
   m.coords = {
@@ -58,13 +58,14 @@ var MapScene = function(){
       puzzleScene.x = m.coords.x;
       puzzleScene.y = m.coords.y;
       hero.setAnimation('idle2');
+      starFlashing(11, 30);
       changeScene(puzzleScene);
     };
 
-    if(hero.x<=-15){
+    if(hero.x<=-10){
       return m.changeMap('l');
     }
-    if(hero.x>=m.map.width-1){
+    if(hero.x>=m.map.width-5){
       return m.changeMap('r');
     }
 

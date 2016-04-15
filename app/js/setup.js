@@ -49,12 +49,23 @@ function changeColorSchema(schema, inverse){
   colors.P = inverse?schema.M:schema.P;
 };
 
+function inverseColors(){
+  var m =  colors.M;
+  var n =  colors.N;
+  var o =  colors.O;
+  var p =  colors.P;
+  colors.M = p;
+  colors.N = o;
+  colors.O = n;
+  colors.P = m;
+};
+
 // PARAMS 
 //gravity config
 var GRAVITY_FORCE = 1;
 var Y_ACELERATION = -1;
 var MAX_JUMP_POWER = 15;
-var ROWS_TO_CHECK_FLOOR_COLLISION = 2;
+var ROWS_TO_CHECK_FLOOR_COLLISION = 3;
 
 
 //requestAnimationFrame

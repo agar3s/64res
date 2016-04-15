@@ -58,6 +58,7 @@ var PuzzleScene = function(){
   m.update = function(values){
     if(values.enter){
       puzzleBible[m.puzzle.id].current = m.puzzle.encode();
+      starFlashing(11,30);
       changeScene(mapScene);
     };
 
@@ -65,7 +66,6 @@ var PuzzleScene = function(){
     if(values.left) m.puzzle.toLeft();
     if(values.up) m.puzzle.toTop();
     if(values.down) m.puzzle.toBottom();
-    hero.animate();
   }
 
   m.draw = function(){

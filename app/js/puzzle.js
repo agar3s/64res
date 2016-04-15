@@ -2,7 +2,6 @@
 var codes = {
   '1': {
     draw: function(x, y, proportion){
-      //console.log(x,y);
       ctx.fillRect(x+proportion*pixelSize, y, pixelSize, proportion*pixelSize);
     }
   },
@@ -75,28 +74,24 @@ var Puzzle = function(code, id){
   }
 
   m.toLeft = function(){
-    console.log('to left');
     if(m.void.i==0) return;
     m.exchange(m.void.i-1, m.void.j);
     m.void.i -=1;
   }
 
   m.toRight = function(){
-    console.log('to right');
     if(m.void.i==3) return;
     m.exchange(m.void.i+1, m.void.j);
     m.void.i +=1;
   }
 
   m.toTop = function(){
-    console.log('to left');
     if(m.void.j==0) return;
     m.exchange(m.void.i, m.void.j-1);
     m.void.j -=1;
   }
 
   m.toBottom = function(){
-    console.log('to right');
     if(m.void.j==3) return;
     m.exchange(m.void.i, m.void.j+1);
     m.void.j +=1;
