@@ -19,6 +19,15 @@ monster1.sprite.setAnimation('idle1');
 
 var idleAnimation = 'idle0';
 
+var zombie = new LayeredSprite([
+  { key:zombie_attackM, layer:'M'},
+  { key:zombie_attackP, layer:'P'}
+]);
+
+zombie.setAnimation('zombie_wake');
+zombie.setPixelSize(pixelSize);
+zombie.setPos(32,32);
+
 var mapScene = new MapScene();
 var puzzleScene = new PuzzleScene();
 var scene = mapScene;
@@ -71,6 +80,7 @@ function gameloop(){
   ctx.fillStyle = colors.P;
   scene.draw();
   hero.draw(mapScene.coords.x*pixelSize, mapScene.coords.y*pixelSize);
+  zombie.draw(mapScene.coords.x*pixelSize, mapScene.coords.y*pixelSize);
   ctx.fillStyle = '#333';
   ctx.fillRect(0, 64*pixelSize, 900, 64*pixelSize);
   ctx.fillRect(64*pixelSize, 0, 900-64*pixelSize, 500);
