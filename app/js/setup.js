@@ -43,10 +43,11 @@ var schemas = {
 var colors = schemas[Object.keys(schemas)[Math.floor(Math.random()*5)]];
 
 function changeColorSchema(schema, inverse){
-  colors.M = inverse?schema.P:schema.M;
-  colors.N = inverse?schema.O:schema.N;
-  colors.O = inverse?schema.N:schema.O;
-  colors.P = inverse?schema.M:schema.P;
+  colors.M = schema.M;
+  colors.N = schema.N;
+  colors.O = schema.O;
+  colors.P = schema.P;
+  if(inverse) inverseColors();
 };
 
 function inverseColors(){

@@ -6,6 +6,7 @@ var Map = function(source){
   drawing.src = source; // can also be a remote URL e.g. http://
   m.map = [];
   m.puzzle = undefined;
+  m.enterPoints = [];
 
   drawing.onload = function(){
     ctx.drawImage(drawing, 0, 0);
@@ -21,11 +22,14 @@ var Map = function(source){
         row++;
       }
       m.map[row].push(Math.floor(pix[i]/64)); // red
-      var info1 = Math.floor(pix[i+1]/10); // green
-      var info2 = Math.floor(pix[i+2]/10); // blue
+      var info1 = Math.floor(pix[i+1]/16); // green
+      var info2 = Math.floor(pix[i+2]/16); // blue
       m.processInfo(info1, info2, m.map[row].length-1, row);
     }
     m.loaded = true;
+    if(m.onReady){
+      m.onReady();
+    }
   }
 
   m.processInfo = function(a, b, i, j){
@@ -34,6 +38,13 @@ var Map = function(source){
       m.puzzle = new Puzzle(code, b);
       m.puzzle.x = i;
       m.puzzle.y = j;
+    }else if(a==6){ // enter point
+      if(i-12<0) m.enterPoints.r={i:i, j:j-8};
+      if(i+12>m.width) m.enterPoints.l={i:i-8, j:j-8};
+      if(j-12<0) m.enterPoints.d={i:i-4, j:j};
+      if(j+12>m.height) m.enterPoints.u={i:i-4, j:j-8};
+      console.log(i, j, m.width, m.height);
+      console.log(m.enterPoints);
     }
   }
 
@@ -97,12 +108,8 @@ var Map = function(source){
   }
 
   m.enterPos = function(direction){
-    return {
-      'r': {i:0, j:m.height/2},
-      'l': {i:m.width, j:m.height/2},
-      'u': {i:m.height/2, j:m.height-15},
-      'd': {i:m.height/2, j:0},
-    }[direction];
+    console.log(direction);
+    return m.enterPoints[direction];
 
   }
 

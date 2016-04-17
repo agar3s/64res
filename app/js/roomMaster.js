@@ -43,10 +43,34 @@ var world = {
   'D': {
     t:'p',
     u:'3'
+  },
+
+  'Af': {
+    u:'A4',
+    l:'A2',
+    d:'A1',
+    r:'A8',
+  },
+
+  'A1': {
+    u:'Af',
+  },
+
+  'A2': {
+    r:'Af',
+  },
+
+  'A4': {
+    d:'Af',
+  },
+
+  'A8': {
+    l:'Af',
   }
+
 };
 
-var currentRoom = world['A'];
+var currentRoom = world['Af'];
 var zone = 0;
 
 function Room(){

@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/B.png');
+  m.map = new Map('assets/Af.png');
 
   m.cont=0;
   m.coords = {
@@ -22,7 +22,6 @@ var MapScene = function(){
     if(isKeyPressed('40')){
       m.down = true;
     }else if(m.down){
-      console.log('ciadss')
       values.down = true;
       m.down = false;
       hero.y += 4;
@@ -180,9 +179,14 @@ var MapScene = function(){
     var newMap = getNextRoom(direction);
     
     m.map = new Map('assets/'+newMap.name+'.png');
-    var pos = m.map.enterPos(direction);
-    //hero.setPos(pos.i, pos.j);
-    hero.setPos(32, 32);
+    m.map.onReady = function(){
+      var pos = m.map.enterPos(direction);
+      console.log(pos);
+      hero.setPos(pos.i, pos.j);
+      m.coords.x = hero.x-24;
+      m.coords.y = hero.y-24;
+    };
+    //hero.setPos(32, 32);
 
   };
 

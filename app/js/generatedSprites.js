@@ -21,9 +21,9 @@ var jump4M = '{7{8{9{:{G{H{I{J{W{Y{Z!"#$1234ABCDQRSTabcdqrst~+~,~-~.~;~=~K~N~\\~
 var jump4N = '{k';
 var jump4O = '{]{g{h{i{j{l{m';
 var jump4P = '{X';
-var powerM = '{X{Y{f{g{h{j{k{u!$&/02356>?ACDGNORSUVW_adfoprsuv~*~+~,~.~/~<~=';
-var powerN = '{i{v"4@BFQ`ceq';
-var powerO = '#%1EPTbt~-';
+var powerM = '"#1234@ADEPRUadrs';
+var powerN = 'BSTb';
+var powerO = 'CQc';
 var runM = '{\'{({){*{7{9{:{G{H{I{J{g{h{i{j!"#$1234ABCDQRSTabcdqrst~*~.~:~>~J~N~[~_~o';
 var zombie_attackM = '{&{\'{({7{8{9{F{G{H{I{J{X{Y{Z{[{i{j{k!"#$%&0456@DEFTUVWcgs~!~-~1~=~A~N~R~^~b~n~r';
 var zombie_attackO = '{6';
@@ -115,18 +115,18 @@ var frames = [
   '\'&$#"!{m{l{j{i{h{g{]', // 81
   '{m{l{j{i{h{g&$#"!', // 82
   '{H{X', // 83
-  'qbQF%usrpaURC53', // 84
-  'U5#~,qbVSQOFDA?0${h', // 85
-  'sqbSPECA1${v{h5%#!', // 86
-  '~,urpaVROD?530!qbPE1{v', // 87
-  'saUT53qQF', // 88
-  '~-tqbVSQOEDC1$saUT54{i', // 89
-  '~,paF?%~-qb`VSQOECB@1${v', // 90
-  'q`QB@4{v{i~,tpaD?3%', // 91
-  'urpRCbT%', // 92
-  '~,saTFA?40{i{h~-tEC1#', // 93
-  '~-`VQOB@5#!~,spaPFA?{h', // 94
-  'tbPE1%ur`VRQOB@540!{i', // 95
+  'RDA2', // 84
+  'bSDBA3', // 85
+  'QCbDBA', // 86
+  'RDA32SQC', // 87
+  'QDC2bTB', // 88
+  'SD', // 89
+  'cRD3QC', // 90
+  'bTSBcRD32', // 91
+  'bTRBAQC', // 92
+  '3bBA', // 93
+  'bBAcR3', // 94
+  'cQCbTBA', // 95
   '~p~O~Kp~o~[~N~J', // 96
   '~q~`~Z~P~I~?~9~/~)~p~_~O~K~>~:~.~*', // 97
   '~i~b~a~Y~:~*{Z{Y{X{W{8~q~`~Z~9~)p{j{i{h{g{H{*{){({\'', // 98

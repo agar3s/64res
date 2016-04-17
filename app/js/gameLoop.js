@@ -7,7 +7,7 @@ var hero = new LayeredSprite([
 
 hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
-hero.setPos(32,32);
+hero.setPos(32, 32);
 
 var power  = new LayeredSprite([
   { key:powerM, layer:'M'},
