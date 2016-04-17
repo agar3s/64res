@@ -8,17 +8,7 @@ var hero = new LayeredSprite([
 hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
 hero.setPos(32,32);
-
-var monster1 = new Monster({
-  nameCode:'zombie_attack',
-  hp: 10,
-  x:10,
-  y:10
-});
-monster1.sprite.setAnimation('zombie_walk');
-
 var idleAnimation = 'idle0';
-
 
 var mapScene = new MapScene();
 var puzzleScene = new PuzzleScene();

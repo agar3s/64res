@@ -14,7 +14,7 @@ var MapScene = function(){
     var values = {
       x: 0,
       y: 0,
-      landed: m.map.checkCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION)
+      heroCollides: m.map.checkCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION)
     }
     
     if(isKeyPressed('37')){
@@ -27,7 +27,7 @@ var MapScene = function(){
       if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
     }
 
-    if(isKeyPressed('38')&&(values.landed!=-1)){
+    if(isKeyPressed('38')&&(values.heroCollides!=-1)){
       hero.collides = false;
       hero.acelerationY = Y_ACELERATION;
       hero.jumpPower = 0;
@@ -79,7 +79,6 @@ var MapScene = function(){
     if(values.x==0&&hero.jumpPower==0&&hero.currentAnimation!='jump4'&&hero.currentAnimation!='jump3'){
       hero.setAnimation(idleAnimation);
     }
-    hero.fall();
     hero.move(values.x);
 
     hero.animate();
@@ -101,8 +100,8 @@ var MapScene = function(){
 
     }
 
-    if((values.landed!=-1)&&hero.acelerationY>0){
-      if(values.landed-hero.y!=16&&hero.speedY>0.3){
+    if((values.heroCollides!=-1)&&hero.acelerationY>0){
+      if(values.heroCollides-hero.y!=16&&hero.speedY>0.3){
         hero.setAnimation('jump4');
         hero.onEndAnimationLoop = function(){
           idleAnimation = 'idle0';
@@ -113,7 +112,7 @@ var MapScene = function(){
       }
 
       hero.acelerationY = 0;
-      hero.setPos(hero.x, values.landed-16);
+      hero.setPos(hero.x, values.heroCollides-16);
       hero.jumpPower = 0;
     };
 
@@ -134,20 +133,12 @@ var MapScene = function(){
     }else if(m.coords.y>(m.map.height-screenSize)){
       m.coords.y = m.map.height-screenSize;
     }
-
-    monster1.fall();
-    monster1.update();
-    monster1.sprite.animate();
-    // animate da zombie
-    
   };
 
   m.draw = function(){
     ctx.fillStyle = colors.D;
     ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
     m.map.draw(Math.floor(m.coords.x), Math.floor(m.coords.y), screenSize, screenSize);
-
-    monster1.sprite.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
   };
 
   m.changeMap = function(direction){
