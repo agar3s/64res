@@ -76,7 +76,7 @@ var Monster = function(props){
   m.fall = function(){
     if(!m.landed){
       m.sprite.fall();
-      m.landed = mapScene.map.checkCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION)!=-1;
+      m.landed = mapScene.map.checkLandCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION)!=-1;
       console.log('LANDED!!!!');
     }
   }
@@ -92,11 +92,11 @@ var Monster = function(props){
     s: m.sprite.stopX,
     w: function(){},
     l: function(){  // lock until land, do nothing
-      if(!mapScene.map.checkCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION))
+      if(!mapScene.map.checkLandCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION))
         m.actionIndex--;
     },
     d: function(){  // move forward until land
-      if(!mapScene.map.checkCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION)){
+      if(!mapScene.map.checkLandCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION)){
         m.actionIndex--;
         m.sprite.forward();
       }else{

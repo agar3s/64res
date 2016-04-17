@@ -58,7 +58,7 @@ var Map = function(source){
   }
 
 
-  m.checkCollision = function(sprite, n){
+  m.checkLandCollision = function(sprite, n){
     var lines = sprite.getLastLines(n);
     var x = sprite.x;
     var y = sprite.y+1;
@@ -78,6 +78,22 @@ var Map = function(source){
       }
     }
     return -1;
+  }
+
+  m.checkLateralCollision = function(sprite){
+    var x = sprite.x+(sprite.direction==0?11:4);
+    var y = sprite.y+3;
+    var limitY = (y+10)>(m.height-1)?(m.height-1):(y+10);
+    if(y<0) y=0;
+    var simpleCollision = false;
+    for (var j = y; j < limitY; j++) {
+      if(m.map[j][x]==0){
+        if(simpleCollision) return true;
+        simpleCollision = true;
+      } 
+    }
+
+    return false;
   }
 
   m.enterPos = function(direction){

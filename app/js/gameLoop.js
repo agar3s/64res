@@ -9,6 +9,16 @@ hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
 hero.setPos(32,32);
 
+var power  = new LayeredSprite([
+  { key:powerM, layer:'M'},
+  { key:powerN, layer:'N'},
+  { key:powerO, layer:'O'}
+]);
+
+power.setAnimation('power');
+power.setPixelSize(pixelSize);
+power.setPos(16, 16);
+
 var monster1 = new Monster({
   nameCode:'zombie_attack',
   hp: 10,

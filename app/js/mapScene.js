@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/A.png');
+  m.map = new Map('assets/B.png');
 
   m.cont=0;
   m.coords = {
@@ -14,17 +14,16 @@ var MapScene = function(){
     var values = {
       x: 0,
       y: 0,
-      landed: m.map.checkCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION)
+      landed: m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION),
+      canMove: true
     }
     
     if(isKeyPressed('37')){
       values.x = -hero.speed;
       hero.setDirection(1);
-      if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
     }else if(isKeyPressed('39')){
       values.x = hero.speed;
       hero.setDirection(0);
-      if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
     }
 
     if(isKeyPressed('38')&&(values.landed!=-1)){
@@ -47,6 +46,8 @@ var MapScene = function(){
       values.enter = true;
       m.enter = false;
     }
+
+    values.canMove = !m.map.checkLateralCollision(hero);
 
     return values;
   };
@@ -79,8 +80,12 @@ var MapScene = function(){
     if(values.x==0&&hero.jumpPower==0&&hero.currentAnimation!='jump4'&&hero.currentAnimation!='jump3'){
       hero.setAnimation(idleAnimation);
     }
+    
+    if(values.canMove&&values.x!=0){
+      if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
+      hero.move(values.x);
+    }
     hero.fall();
-    hero.move(values.x);
 
     hero.animate();
     m.cont++;
@@ -138,8 +143,10 @@ var MapScene = function(){
     monster1.fall();
     monster1.update();
     monster1.sprite.animate();
+
+    power.animate();
     // animate da zombie
-    
+
   };
 
   m.draw = function(){
@@ -148,6 +155,7 @@ var MapScene = function(){
     m.map.draw(Math.floor(m.coords.x), Math.floor(m.coords.y), screenSize, screenSize);
 
     monster1.sprite.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
+    power.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
   };
 
   m.changeMap = function(direction){
