@@ -14,6 +14,7 @@ var LayeredSprite = function(sprites){
   m.acelerationY = 0;
   m.x = 0;
   m.y = 0;
+  m.direction = 0;
   m.jumpPower = 0;
   m.onEndAnimationLoop = undefined;
   m.currentAnimation = '';
@@ -49,14 +50,17 @@ var LayeredSprite = function(sprites){
     }
   };
 
-  m.move = function(disx){
+  m.fall = function(){
     m.acelerationY += (0.1);
     if(m.acelerationY>2) m.acelerationY = 2;
     m.speedY = m.acelerationY;
-    m.x+=disx;
-    m.y = Math.round(m.y+m.speedY)
+    m.y = Math.round(m.y + m.speedY)
     m.setPos(m.x, m.y);
-    
+  }
+
+  m.move = function(disx){
+    m.x = Math.round(m.x + disx);
+    m.setPos(m.x, m.y);
   };
 
   m.setAnimation = function(name){
@@ -68,6 +72,7 @@ var LayeredSprite = function(sprites){
   };
 
   m.setDirection = function(direction){
+    m.direction = direction;
     m.sprites.map(function(sprite){sprite.direction=direction});
   };
 
@@ -84,5 +89,14 @@ var LayeredSprite = function(sprites){
       }
       return l;
     }, lines);
+  }
+
+  m.forward = function(){
+    m.move(m.direction==0?1:-1);
+  }
+
+  m.turn = function(){
+    m.direction = !m.direction;
+    m.sprites.map(function(sprite){sprite.direction = m.direction});
   }
 }

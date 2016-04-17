@@ -8,6 +8,15 @@ var hero = new LayeredSprite([
 hero.setAnimation('idle0');
 hero.setPixelSize(pixelSize);
 hero.setPos(32,32);
+
+var monster1 = new Monster({
+  name:'attack',
+  hp: 10,
+  x:10,
+  y:10
+});
+monster1.sprite.setAnimation('idle1');
+
 var idleAnimation = 'idle0';
 
 var mapScene = new MapScene();
