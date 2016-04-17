@@ -8,8 +8,8 @@ var Monster = function(props){
   var layers = [];
   for (var i = 0; i < 4; i++) {
     var layer = 'MNOP'[i];
-    console.log(m.name + layer, !window[m.name + layer])
-    if(!window[m.name + layer]) continue;
+    console.log(m.name + layer, !animations[m.name + layer])
+    if(!animations[m.name + layer]) continue;
     layers.push({
       key: m.name + layer,
       layer: layer
