@@ -139,7 +139,7 @@ var MapScene = function(){
     monster1.update();
     monster1.sprite.animate();
     // animate da zombie
-    zombie.animate();
+    
   };
 
   m.draw = function(){
