@@ -9,14 +9,31 @@ var MapScene = function(){
     y:0
   };
   m.enter = false;
+  m.down = false;
 
   m.readInputs = function(){
     var values = {
       x: 0,
       y: 0,
-      landed: m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION),
-      canMove: true
+      canMove: true,
+      landed: -1
     }
+
+    if(isKeyPressed('40')){
+      m.down = true;
+    }else if(m.down){
+      console.log('ciadss')
+      values.down = true;
+      m.down = false;
+      hero.y += 4;
+      values.landed = m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION);
+      if(values.landed!=-1){
+        hero.y -=4;
+      }
+    }
+      values.landed = m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION);
+    
+      
     
     if(isKeyPressed('37')){
       values.x = -hero.speed;
@@ -46,6 +63,7 @@ var MapScene = function(){
       values.enter = true;
       m.enter = false;
     }
+
 
     values.canMove = !m.map.checkLateralCollision(hero);
 

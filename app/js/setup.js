@@ -65,7 +65,7 @@ function inverseColors(){
 var GRAVITY_FORCE = 1;
 var Y_ACELERATION = -1;
 var MAX_JUMP_POWER = 15;
-var ROWS_TO_CHECK_FLOOR_COLLISION = 3;
+var ROWS_TO_CHECK_FLOOR_COLLISION = 2;
 
 
 //requestAnimationFrame

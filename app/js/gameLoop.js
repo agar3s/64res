@@ -40,7 +40,7 @@ var schemaCont = 0;
 canvas.addEventListener('click', function(e){
   schemaCont+=1;
   if(schemaCont==4) schemaCont=0;
-  changeColorSchema(schemas[names[schemaCont]], false);
+  changeColorSchema(schemas[names[schemaCont]], (Math.random()>0.5));
   e.preventDefault();
 });
 /***/
