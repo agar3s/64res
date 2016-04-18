@@ -157,7 +157,7 @@ var MapScene = function(){
       m.coords.y = m.map.height-screenSize;
     }
 
-    monster1.fall();
+    //monster1.fall();
     monster1.update();
     monster1.sprite.animate();
 

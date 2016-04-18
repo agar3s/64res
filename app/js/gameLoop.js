@@ -20,12 +20,13 @@ power.setPixelSize(pixelSize);
 power.setPos(16, 16);
 
 var monster1 = new Monster({
-  nameCode:'zombie_attack',
+  nameCode:'air_attack',
   hp: 10,
   x:10,
   y:10
 });
-monster1.sprite.setAnimation('zombie_walk');
+monster1.sprite.setPixelSize(pixelSize*2);
+monster1.sprite.setAnimation('air_idle');
 
 var idleAnimation = 'idle0';
 

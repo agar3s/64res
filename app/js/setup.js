@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 
 var pixelSize = 7;
 var screenSize = 64;
-var START = 'D';
+var START = '2';
 
 
 var schemas = {
