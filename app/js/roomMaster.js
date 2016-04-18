@@ -5,7 +5,7 @@ var world = {
   },
   '1': {
     l:'0',
-    u:'A'
+    u:'2'
   },
   '2': {
     l:'3',
@@ -14,63 +14,59 @@ var world = {
   },
   '3': {
     r:'2',
-    l:'A',
-    u:'B'
+    l:'B',
+    u:'C',
+    scheme: 'base'
   },
   '4': {
     l:'2',
-    r:'C',
-    d:'D'
+    r:'A',
+    d:'D',
+    scheme: 'base'
   },
   'A': {
-    l:'A',
+    l:'4',
     r:'A',
     p:'2',
-    code:'A'
+    code:'A',
+    scheme: 'gboy2'
   },
   'AZ': {
     l:'p',
     code:'AZ'
   },
   'B': {
-    t:'p',
-    d:'3'
+    r:'3',
+    l:'3',
+    code:'B',
+    scheme: 'gboy'
+  },
+  'BZ': {
+    r:'3',
+    l:'B',
+    code:'BZ'
   },
   'C': {
     t:'p',
-    l:'3'
+    d:'3',
+    code:'C',
+    scheme: 'gboy3'
+  },
+  'CZ': {
+    code:'CZ'
   },
   'D': {
     t:'p',
-    u:'3'
+    u:'4',
+    code:'D',
+    scheme: 'exp2'
   },
-
-  'Af': {
-    u:'A4',
-    l:'A2',
-    d:'A1',
-    r:'A8',
-  },
-
-  'A1': {
-    u:'Af',
-  },
-
-  'A2': {
-    r:'Af',
-  },
-
-  'A4': {
-    d:'Af',
-  },
-
-  'A8': {
-    l:'Af',
+  'DZ': {
+    code:'DZ'
   }
-
 };
 
-var currentRoom = world['Af'];
+var currentRoom = world[START];
 var zone = 0;
 
 function Room(){
@@ -87,7 +83,8 @@ function getNextRoom(direction){
   currentRoom = world[next];
   return {
     name: currentRoom.code || next,
-    data: currentRoom
+    data: currentRoom,
+    scheme: currentRoom.scheme
   };
 }
 
@@ -114,10 +111,44 @@ function insertRoom(i, j, value, zone){
   return room;
 }
 
+
+function getIposition(code){
+  if(code==1||code==10) return 1;
+  if(code==2||code==9) return 2;
+  if(code>=3&&code<=8) return 3;
+  return 0;
+}
+
+function getJposition(code){
+  if(code==5||code==14) return 1;
+  if(code==6||code==13) return 2;
+  code = parseInt(code, 16);
+  if(code>=7&&code<=12) return 3;
+  return 0;
+}
+
+
 function generateRooms(zone, code){
-  console.log('going to generate rooms');
   var enter = world[zone];
   var exit = world[zone+'Z'];
+
+  var enterCode = parseInt(code[0], 16);
+  var enterRoom = {
+    i: getIposition(enterCode),
+    j: getJposition(enterCode),
+    side: 'urdl'[Math.floor(enterCode/4)],
+    counterSide: 'dlur'[Math.floor(enterCode/4)]
+  };
+
+  var exitCode = parseInt(code[1], 16);
+  var exitRoom = {
+    i: getIposition(exitCode),
+    j: getJposition(exitCode),
+    side: 'urdl'[Math.floor(exitCode/4)],
+    counterSide: 'dlur'[Math.floor(exitCode/4)]
+  };
+
+
   for (var j = 0; j < 4; j++) {
     for (var i = 0; i < 4; i++) {
       var value = parseInt(code[j*4+i+2], 16);
@@ -125,13 +156,13 @@ function generateRooms(zone, code){
       var room = insertRoom(i, j, value, zone);
       
       //temp solution
-      if(i==0&&j==0){
-        room.l = enter.code;
-        enter.r = zone+i+''+j;
+      if(i==enterRoom.i&&j==enterRoom.j){
+        room[enterRoom.side] = enter.code;
+        enter[enterRoom.counterSide] = zone+i+''+j;
       }
-      if(i==3&&j==3){
-        room.r = exit.code
-        exit.l = zone+i+''+j;
+      if(i==exitRoom.i&&j==exitRoom.j){
+        room[exitRoom.side] = exit.code
+        exit[exitRoom.counterSide] = zone+i+''+j;
       }
       world[zone+i+''+j]=room;
     }
@@ -139,3 +170,6 @@ function generateRooms(zone, code){
 }
 
 generateRooms("A", puzzleBible['2'].current);
+generateRooms("B", puzzleBible['4'].current);
+generateRooms("C", puzzleBible['6'].current);
+generateRooms("D", puzzleBible['8'].current);

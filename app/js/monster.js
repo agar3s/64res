@@ -8,7 +8,6 @@ var Monster = function(props){
   var layers = [];
   for (var i = 0; i < 4; i++) {
     var layer = 'MNOP'[i];
-    console.log(m.name + layer, !animations[m.name + layer])
     if(!animations[m.name + layer]) continue;
     layers.push({
       key: m.name + layer,
@@ -77,7 +76,6 @@ var Monster = function(props){
     if(!m.landed){
       m.sprite.fall();
       m.landed = mapScene.map.checkLandCollision(m.sprite, ROWS_TO_CHECK_FLOOR_COLLISION)!=-1;
-      console.log('LANDED!!!!');
     }
   }
 
@@ -143,7 +141,6 @@ var Monster = function(props){
   // m.trigger[0] = hummm
   m.triggers = [
     function(){
-      console.log('do something after dead');
     }
   ];
 

@@ -1,7 +1,7 @@
 
 var MapScene = function(){
   var m = this;
-  m.map = new Map('assets/Af.png');
+  m.map = new Map('assets/'+START+'.png');
 
   m.cont=0;
   m.coords = {
@@ -177,17 +177,16 @@ var MapScene = function(){
 
   m.changeMap = function(direction){
     var newMap = getNextRoom(direction);
-    
+    if(newMap.scheme){
+      changeColorSchema(schemas[newMap.scheme]);
+    }
     m.map = new Map('assets/'+newMap.name+'.png');
     m.map.onReady = function(){
       var pos = m.map.enterPos(direction);
-      console.log(pos);
       hero.setPos(pos.i, pos.j);
       m.coords.x = hero.x-24;
       m.coords.y = hero.y-24;
     };
-    //hero.setPos(32, 32);
-
   };
 
   m.isReady = function(){

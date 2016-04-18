@@ -5,9 +5,16 @@ var ctx = canvas.getContext('2d');
 
 var pixelSize = 7;
 var screenSize = 64;
+var START = 'A';
 
 
 var schemas = {
+  base: {
+    M:'#92989B',
+    N:'#7B7D7F',
+    O:'#434147',
+    P:'#000000'
+  },
   gboy: {
     M:'#0E3A19',
     N:'#32623D',
@@ -40,7 +47,12 @@ var schemas = {
   },
 };
 
-var colors = schemas[Object.keys(schemas)[Math.floor(Math.random()*5)]];
+var colors = {
+  M:'#92989B',
+  N:'#7B7D7F',
+  O:'#434147',
+  P:'#000000'
+};
 
 function changeColorSchema(schema, inverse){
   colors.M = schema.M;
@@ -49,6 +61,7 @@ function changeColorSchema(schema, inverse){
   colors.P = schema.P;
   if(inverse) inverseColors();
 };
+
 
 function inverseColors(){
   var m =  colors.M;

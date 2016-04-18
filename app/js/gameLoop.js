@@ -34,16 +34,6 @@ var mapScene = new MapScene();
 var puzzleScene = new PuzzleScene();
 var scene = mapScene;
 
-/** color schemes */
-var names = ['exp2','gboy2','gboy3', 'exp1','gboy'];
-var schemaCont = 0;
-canvas.addEventListener('click', function(e){
-  schemaCont+=1;
-  if(schemaCont==4) schemaCont=0;
-  changeColorSchema(schemas[names[schemaCont]], (Math.random()>0.5));
-  e.preventDefault();
-});
-/***/
 
 function changeScene(newScene){
   scene = newScene;
