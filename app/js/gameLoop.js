@@ -19,8 +19,6 @@ power.setAnimation('power');
 power.setPixelSize(pixelSize);
 power.setPos(16, 16);
 
-//var monster1 = generateMonster('water', 10, 10);
-
 var idleAnimation = 'idle0';
 
 
@@ -55,7 +53,6 @@ function starFlashing(maximum, interval){
 
 function gameloop(){
   if(!scene.isReady()){
-    //console.log('no ready', scene.map);
     return ra(gameloop);
   }
 

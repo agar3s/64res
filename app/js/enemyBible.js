@@ -62,7 +62,7 @@ var generate = function(type, x, y, direction){
   monster.sprite.setPixelSize(pixelSize*data.size);
   monster.sprite.setAnimation(type+'_'+data.startAnimation);
   return monster;
-}
+};
 
 var types = ['dog', 'zombie', 'air', 'earth', 'fire', 'water'];
 
@@ -73,4 +73,4 @@ var generateMonsters = function(dataArray){
     monsters.push(generate(types[data.type], data.i, data.j, data.direction));
   };
   return monsters;
-}
+};

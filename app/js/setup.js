@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 
 var pixelSize = 7;
 var screenSize = 64;
-var START = '2';
+var START = '0';
 var RUN_SOUND_SOUNDRATE = 9;
 
 

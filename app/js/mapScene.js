@@ -10,7 +10,10 @@ var MapScene = function(){
   };
   m.enter = false;
   m.down = false;
+  m.space = false;
+  m.coldown = 0;
   m.monsters = [];
+  m.powers = [];
 
   m.readInputs = function(){
     var values = {
@@ -65,6 +68,13 @@ var MapScene = function(){
       m.enter = false;
     }
 
+    if(isKeyPressed('32')){
+      m.space = true;
+    }else if(m.space){
+      values.space = true;
+      m.space = false;
+    }
+
 
     values.canMove = !m.map.checkLateralCollision(hero);
 
@@ -81,6 +91,8 @@ var MapScene = function(){
       starFlashing(11, 30);
       changeScene(puzzleScene);
     };
+
+    if(m.coldown>0)m.coldown--;
 
     if(hero.x<=-10 && isNextRoom('l')){
       return m.changeMap('l');
@@ -153,6 +165,11 @@ var MapScene = function(){
       hero.setAnimation('jump3');
     }
 
+    if(values.space&&m.coldown==0){
+      m.powers.push(new Power(hero.x, hero.y, (hero.direction==0)?1.1:-1.1, 0, 1));
+      m.coldown = 35;
+    }
+
     // camera follows
     m.coords.x = hero.x-24;
     m.coords.y = hero.y-24;
@@ -174,7 +191,13 @@ var MapScene = function(){
       monster.sprite.animate();
     }
 
-    power.animate();
+    for (var i = 0; i < m.powers.length; i++) {
+      var power = m.powers[i];
+      power.update();
+      power.sprite.animate();
+      attack_sfx.play();
+    }
+
     // animate da zombie
 
   };
@@ -188,7 +211,9 @@ var MapScene = function(){
       var monster = m.monsters[i];
       monster.sprite.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
     }
-    power.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
+    for (var i = 0; i < m.powers.length; i++) {
+      m.powers[i].draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
+    }
   };
 
   m.changeMap = function(direction){
