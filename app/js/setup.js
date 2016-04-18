@@ -100,3 +100,7 @@ if (!requestAnimationFrame) {
   };
 }
 ra = requestAnimationFrame;
+
+var snd = new Audio("assets/main_theme.ogg");
+snd.loop = true;
+snd.play();
