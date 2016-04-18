@@ -10,6 +10,7 @@ var MapScene = function(){
   };
   m.enter = false;
   m.down = false;
+  m.monsters = [];
 
   m.readInputs = function(){
     var values = {
@@ -30,7 +31,7 @@ var MapScene = function(){
         hero.y -=4;
       }
     }
-      values.landed = m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION);
+    values.landed = m.map.checkLandCollision(hero, ROWS_TO_CHECK_FLOOR_COLLISION);
     
       
     
@@ -158,8 +159,11 @@ var MapScene = function(){
     }
 
     //monster1.fall();
-    monster1.update();
-    monster1.sprite.animate();
+    for (var i = 0; i < m.monsters.length; i++) {
+      var monster = m.monsters[i];
+      monster.update();
+      monster.sprite.animate();
+    }
 
     power.animate();
     // animate da zombie
@@ -171,7 +175,10 @@ var MapScene = function(){
     ctx.fillRect(0, 0, pixelSize*screenSize, pixelSize*screenSize);
     m.map.draw(Math.floor(m.coords.x), Math.floor(m.coords.y), screenSize, screenSize);
 
-    monster1.sprite.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
+    for (var i = 0; i < m.monsters.length; i++) {
+      var monster = m.monsters[i];
+      monster.sprite.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
+    }
     power.draw(m.coords.x*pixelSize, m.coords.y*pixelSize);
   };
 
@@ -181,11 +188,12 @@ var MapScene = function(){
       changeColorSchema(schemas[newMap.scheme]);
     }
     m.map = new Map('assets/'+newMap.name+'.png');
-    m.map.onReady = function(){
+    m.map.onReady = function(monsterData){
       var pos = m.map.enterPos(direction);
       hero.setPos(pos.i, pos.j);
       m.coords.x = hero.x-24;
       m.coords.y = hero.y-24;
+      m.monsters = generateMonsters(monsterData);
     };
   };
 

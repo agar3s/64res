@@ -2,8 +2,8 @@ var air_attackM = '{H{I{Z{f{g{k{u"#%/01234ABCDQRST`bcmprs~(~)~+~,~-~.~:~;~?~I~M~
 var air_attackO = '{v!';
 var air_idleM = '{8{9{G{J{W{X{Y{Z{h{i"#012345@ABCDEOQRSTV]^bcghrs~+~,~-~.~:~;~?~I~M~N~O~P~Z~[~\\~]';
 var air_idleO = '{H{I';
-var air_moveM = '{6{7{G{H{U{V{W{X{f{g!"1234@ABCDEPQRSTU_bcfprsu~*~+~,~-~.~/~:~;~?~I~M~N~O~P~Z~[~\\~]';
-var air_moveO = '{E{F';
+var air_walkM = '{6{7{G{H{U{V{W{X{f{g!"1234@ABCDEPQRSTU_bcfprsu~*~+~,~-~.~/~:~;~?~I~M~N~O~P~Z~[~\\~]';
+var air_walkO = '{E{F';
 var attackM = '{\'{({){*{7{9{:{G{H{I{J{g{h{i{j{k!"#$%&1234ABCDQRSTabcdqrst~+~.~;~>~K~N~[~^~k~n';
 var attackN = '{[';
 var attackO = '{L{M{W{X{Y{Z{\\';
@@ -20,8 +20,8 @@ var earth_attackM = '{8{9{:{I{J{W{X{Y{Z{[{g{h{i{j{k{l!"#$%&\'123457ABCDEGQRSTabc
 var earth_attackN = '~j~m~q~s';
 var earth_attackO = '{H';
 var earth_idleM = '{8{9{:{I{J{W{X{Y{Z{[{f{g{h{i{j{k{l{v!"#$%&12345ABCDEQRSTabcdeqrstuv~+~,~-~.~/~0~1~2~;~>~?~@~A~B~K~N~P~R~Z~]~a~c';
-var earth_moveM = '{({){*{9{:{G{H{I{J{K{V{W{X{Y{Z{[{\\{e{f{g{h{i{j{k{l{m{u!"#$%\'/123457ABCDQRSTabcdeqrstuv~+~.~/~0~1~2~;~>~?~@~A~B~J~M~P~R~a~c';
-var earth_moveN = '~Z~]~q~s';
+var earth_walkM = '{({){*{9{:{G{H{I{J{K{V{W{X{Y{Z{[{\\{e{f{g{h{i{j{k{l{m{u!"#$%\'/123457ABCDQRSTabcdeqrstuv~+~.~/~0~1~2~;~>~?~@~A~B~J~M~P~R~a~c';
+var earth_walkN = '~Z~]~q~s';
 var fire_attackM = '{9{:{<{={>{?{H{K{L{M{N{O{X{Y{Z{[{\\{h{i{j{k"#$%/2345@ABCDRSTabcdeqrstu~+~/~:~?~J~P~Y~`~i~q';
 var fire_attackN = '{){*{8{;{l&6EFGUVWfgv~!~"~0~1';
 var fire_attackO = '{I{J';
@@ -432,12 +432,12 @@ var animations = {
     kf: air_idleO,
     f: [0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,23,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,28,29,30,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,0,0,0,0,0,0,0,0]
   },
-  air_moveM: {
-    kf: air_moveM,
+  air_walkM: {
+    kf: air_walkM,
     f: [0,0,0,32,0,0,0,33,0,0,0,34,0,0,0,35,0,0,0,36,0,0,0,37,0,0,0,38,0,0,0,39,0,0,0,40]
   },
-  air_moveO: {
-    kf: air_moveO,
+  air_walkO: {
+    kf: air_walkO,
     f: [0,0,0,41,0,0,0,42,0,0,0,0,0,0,0,43,0,0,0,44,0,0,0,45,0,0,0,0,0,0,0,0,0,0,0,46]
   },
   attackM: {
@@ -516,15 +516,15 @@ var animations = {
     kf: earth_attackO,
     f: [0,0,0,126,0,0,0,127,0,0,0,128,0,0,0,129,0,0,0,130,0,0,0,126,0,0,0,127,0,0,0,128,0,0,0,129,0,0,0,130,0,0,0]
   },
-  earth_moveM: {
-    kf: earth_moveM,
+  earth_walkM: {
+    kf: earth_walkM,
     f: [0,131,0,132,0,133,0,134,0,135,0,136,0,137,0,138]
   },
-  earth_moveN: {
-    kf: earth_moveN,
+  earth_walkN: {
+    kf: earth_walkN,
     f: [0,139,0,140,0,141,0,142,0,143,0,144,0,145,0,106]
   },
-  earth_moveO: {
+  earth_walkO: {
     kf: attackP,
     f: [0,146,0,147,0,148,0,149,0,150,0,151,0,152,0,126]
   },

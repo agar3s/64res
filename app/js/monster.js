@@ -3,6 +3,7 @@ var Monster = function(props){
   var m = this;
   m.name = props.nameCode;
   m.landed = false;
+  m.type = props.type;
 
   //load sprite depending on nameCode and type
   var layers = [];
@@ -42,7 +43,7 @@ var Monster = function(props){
     m.actionpipe = newPipe;
   }
 
-  m.setActionPipe(props.actionpipe||'f60taw20');
+  m.setActionPipe(props.actionpipe||'aw20');
   m.actionIndex = 0;
 
   m.attack1 = function(){

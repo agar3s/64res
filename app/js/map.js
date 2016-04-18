@@ -7,6 +7,7 @@ var Map = function(source){
   m.map = [];
   m.puzzle = undefined;
   m.enterPoints = [];
+  m.monsterData = [];
 
   drawing.onload = function(){
     ctx.drawImage(drawing, 0, 0);
@@ -28,7 +29,7 @@ var Map = function(source){
     }
     m.loaded = true;
     if(m.onReady){
-      m.onReady();
+      m.onReady(m.monsterData);
     }
   }
 
@@ -43,6 +44,13 @@ var Map = function(source){
       if(i+12>m.width) m.enterPoints.l={i:i-8, j:j-8};
       if(j-12<0) m.enterPoints.d={i:i-4, j:j};
       if(j+12>m.height) m.enterPoints.u={i:i-4, j:j-8};
+    }else if(a>=8&&a<=13){
+      m.monsterData.push({
+        type: a-8,
+        direction: b<7?0:1,
+        i:i,
+        j:j
+      });
     }
   }
 
