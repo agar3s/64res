@@ -58,6 +58,12 @@ function gameloop(){
     //console.log('no ready', scene.map);
     return ra(gameloop);
   }
+
+  if (playingMusic === false) {
+    playingMusic = true;
+    snd.play();
+  }
+
   // read
   var values = scene.readInputs();
   // update

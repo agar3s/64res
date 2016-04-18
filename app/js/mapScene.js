@@ -49,6 +49,7 @@ var MapScene = function(){
       hero.jumpPower = 0;
       hero.lockJump=false;
       hero.setAnimation('jump1');
+      jump_sfx.play();
     }
 
     if(isKeyPressed('38')&&hero.acelerationY<0&&!hero.lockJump){
@@ -100,7 +101,15 @@ var MapScene = function(){
     }
     
     if(values.canMove&&values.x!=0){
-      if(hero.jumpPower==0&&hero.currentAnimation!='jump4') hero.setAnimation('run');
+      if(hero.jumpPower==0&&hero.currentAnimation!='jump4') {
+        hero.setAnimation('run');
+        if (--run_sfx_wait === 0) {
+          run_sfx.play();
+          run_sfx_wait = RUN_SOUND_SOUNDRATE;
+        }
+      }else{
+        run_sfx_wait = RUN_SOUND_SOUNDRATE;
+      }
       hero.move(values.x);
     }
     hero.fall();
