@@ -6,6 +6,7 @@ var ctx = canvas.getContext('2d');
 var pixelSize = 7;
 var screenSize = 64;
 var START = '2';
+var RUN_SOUND_SOUNDRATE = 9;
 
 
 var schemas = {
@@ -100,3 +101,15 @@ if (!requestAnimationFrame) {
   };
 }
 ra = requestAnimationFrame;
+
+// load music and sound effects
+var playingMusic = false;
+var snd = new Audio("assets/main_theme.ogg");
+snd.loop = true;
+
+var jump_sfx = new Audio("assets/jump.ogg");
+var attack_sfx = new Audio("assets/attack.ogg");
+var hit_sfx = new Audio("assets/hit.ogg");
+var run_sfx = new Audio("assets/run.ogg");
+run_sfx.volume = 0.3;
+var run_sfx_wait = RUN_SOUND_SOUNDRATE;
